@@ -1,20 +1,20 @@
-# Use official Node image
+# Backend container image (Node)
 FROM node:18
 
-# Create working directory inside container
+# Work inside /app in the container
 WORKDIR /app
 
-# Copy package files first (for better Docker caching)
+# Copy dependency manifests first (better caching)
 COPY package*.json ./
 
 # Install dependencies
 RUN npm install
 
-# Copy rest of application code
+# Copy the rest of the backend source code
 COPY . .
 
-# Expose backend port
+# Backend listens on 8080
 EXPOSE 8080
 
-# Start backend server
+# Start the backend
 CMD ["npm", "start"]

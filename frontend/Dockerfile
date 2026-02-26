@@ -1,20 +1,20 @@
-# Use official Node image
+# Frontend container image (Node)
 FROM node:18
 
-# Create working directory
+# Work inside /app in the container
 WORKDIR /app
 
-# Copy package files
+# Copy dependency manifests first (better caching)
 COPY package*.json ./
 
 # Install dependencies
 RUN npm install
 
-# Copy remaining app files
+# Copy the rest of the frontend source code
 COPY . .
 
-# Expose frontend port
+# Frontend listens on 3000
 EXPOSE 3000
 
-# Start frontend
+# Start the frontend
 CMD ["npm", "start"]
