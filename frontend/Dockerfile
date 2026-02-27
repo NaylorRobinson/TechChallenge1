@@ -16,5 +16,8 @@ COPY . .
 # Frontend listens on 3000
 EXPOSE 3000
 
+# Ensure React binds to all interfaces
+ENV HOST=0.0.0.0
+
 # Start the frontend
 CMD ["npm", "start"]
